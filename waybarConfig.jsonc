@@ -1,0 +1,228 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 50,
+    "modules-left": ["custom/arch", "clock", "custom/weather", "cpu", "temperature", "custom/gpu", "hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["group/spotify", "network", "bluetooth", "custom/power_profile", "battery", "backlight", "pulseaudio", "pulseaudio#microphone", "hyprland/language", "tray"],
+
+    "hyprland/window": {
+        "format": "{class}"
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "1": "<span color='#89b4fa'>1</span>",
+            "2": "<span color='#a6e3a1'>2</span>",
+            "3": "<span color='#f9e2af'>3</span>",
+            "4": "<span color='#f38ba8'>4</span>",
+            "5": "<span color='#cba6f7'>5</span>",
+            "6": "<span color='#89b4fa'>6</span>",
+            "7": "<span color='#a6e3a1'>7</span>",
+            "8": "<span color='#f9e2af'>8</span>",
+            "9": "<span color='#f38ba8'>9</span>",
+            "10": "<span color='#cba6f7'>10</span>",
+            "default": ""
+        }
+    },
+
+    "group/spotify": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/spotify",           
+            "custom/spotify-prev",
+            "custom/spotify-play",
+            "custom/spotify-next"       
+        ]
+    },
+
+    "custom/spotify": {
+        "exec": "playerctl -p spotify metadata --format '{{artist}} - {{title}}' 2>/dev/null",
+        "interval": 2,
+        "format": "  {}",             
+        "tooltip": false,
+        "max-length": 30,
+        "escape": true,
+        "on-click": "swaync-client -t -w" 
+    },
+
+    "custom/spotify-prev": {
+        "format": "<span size='130%'>󰒮</span>", 
+        "on-click": "playerctl -p spotify previous",
+        "tooltip": false
+    },
+
+    "custom/spotify-play": {
+        "exec": "playerctl -p spotify status 2>/dev/null | grep -q 'Playing' && echo '<span size=\"130%\">󰏤</span>' || echo '<span size=\"130%\">󰐊</span>'",
+        "interval": 1,
+        "format": "{}",
+        "on-click": "playerctl -p spotify play-pause",
+        "tooltip": false
+    },
+
+    "custom/spotify-next": {
+        "format": "<span size='130%'>󰒭</span>", 
+        "on-click": "playerctl -p spotify next",
+        "tooltip": false
+    },
+
+    "custom/power_profile": {
+        "exec": "asusctl profile -p | sed s:'Active profile is'::",
+        "interval": 30,
+        "format": "󰈐{}",
+        "on-click": "asusctl profile -n; pkill -SIGRTMIN+8 waybar",
+        "signal": 8
+    },
+
+    "custom/weather": {
+        "tooltip": true,
+        "format": "{}",
+        "interval": 30,
+        "exec": "~/.config/waybar/scripts/waybar-wttr.py",
+        "return-type": "json"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+
+    "custom/arch": {
+        "format": "<span size='130%'>󰣇</span>",
+        "tooltip": false,
+        "on-click": "wofi --show drun" 
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": "  {usage}%",
+        "tooltip": false
+    },
+
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
+        "interval": 2,
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C",
+        "tooltip": false
+    },
+
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "interval": 2,
+        "format": "󰢮  {}%",
+        "tooltip": false
+    },
+
+    "clock": {
+        "timezone": "Europe/Moscow",
+        "interval": 1,
+        "format": " {:%H:%M:%S}",
+        "format-alt": " {:%A, %d %B %Y}",
+        "tooltip-format": "<tt><span size='12pt'>{calendar}</span></tt>",
+        "calendar": {
+            "mode"          : "month",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#89b4fa'><b>{}</b></span>",
+                "days":       "<span color='#cdd6f4'><b>{}</b></span>",
+                "weeks":      "<span color='#cba6f7'><b>W{}</b></span>",
+                "weekdays":   "<span color='#f9e2af'><b>{}</b></span>",
+                "today":      "<span color='#f38ba8'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_down",
+            "on-scroll-down": "shift_up"
+        }
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "min-length": 6
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "tooltip": false,
+        "format-muted": "<span size='130%'>󰸈</span> Muted",
+        "on-click": "pamixer -t",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " Muted",
+        "on-click": "pamixer --default-source -t",
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
+        "scroll-step": 5
+    },
+
+    "hyprland/language": {
+        "format": "  {short}",
+        "tooltip-format": "{long}",
+        "on-click": "hyprctl switchxkblayout asus-keyboard next" 
+    },
+
+    "network": {
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "󰌗 ",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) - {ifname} via {gwaddr}",
+        "tooltip-format-ethernet": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected ⚠",
+        "on-click": "orbit toggle top-right --tab wifi"
+    },
+
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": " off",
+        "format-connected": " {num_connections}",
+        "tooltip-format": "{status}",
+        "tooltip-format-connected": " {device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "on-click": "orbit toggle top-right --tab bluetooth",
+        "on-click-right": "rfkill toggle bluetooth"
+    }
+}

@@ -1,0 +1,266 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(21, 18, 27, 0);
+    color: #cdd6f4;
+}
+
+/* Всплывающие подсказки */
+tooltip {
+    background-color: rgba(13, 13, 13, 0.90);
+    border: 1px solid #181825;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+tooltip label {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 15px;
+    color: #cdd6f4;
+}
+
+/* Островок вокрспейсов */
+#workspaces {
+    background-color: rgba(13, 13, 13, 0.75);
+    border: 1px solid #181825;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-left: 10px;
+    padding: 0px 5px;
+}
+
+#workspaces button { 
+    padding: 2px 7px; 
+    background: transparent; 
+}
+
+#workspaces button.active { 
+    background-color: rgba(69, 69, 69, 0.75); 
+    border-radius: 5px;
+}
+
+#workspaces button.urgent { 
+    color: #11111b;
+}
+
+/* Контейнер группы плеера */
+#spotify {
+    background-color: rgba(13, 13, 13, 0.75);
+    border: 1px solid #181825;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-right: 10px; 
+    padding: 0px 12px;
+}
+
+/* Общие сбросы для элементов внутри таблетки */
+#custom-spotify,
+#custom-spotify-prev,
+#custom-spotify-play,
+#custom-spotify-next {
+    color: #a6e3a1;
+    background: transparent; 
+    border: none;
+    border-radius: 0;
+}
+
+/* Название трека и иконка */
+#custom-spotify {
+    padding-right: 12px;
+}
+
+/* Кнопки управления */
+#custom-spotify-prev,
+#custom-spotify-play,
+#custom-spotify-next {
+    padding: 0px 4px; 
+}
+
+/* Эффект при наведении на кнопки */
+#custom-spotify-prev:hover,
+#custom-spotify-play:hover,
+#custom-spotify-next:hover {
+    color: #cdd6f4;
+}
+
+/* Центральное окно */
+#window {
+    background-color: rgba(13, 13, 13, 0.75);
+    border: 1px solid #181825;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding: 0px 15px;
+}
+
+/* arch linux logo */
+#custom-arch {
+    background-color: rgba(13, 13, 13, 0.75);
+    border: 1px solid #181825;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-left: 10px;
+    
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 10px;  
+    padding-right: 15px; 
+}
+
+#custom-arch { color: #1793D1; } 
+
+/* Системные ресурсы (CPU, Temp, GPU) */
+#cpu,
+#temperature,
+#custom-gpu {
+    background-color: rgba(3, 13, 13, 0.75);
+    border-top: 1px solid #181825;
+    border-bottom: 1px solid #181825;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    padding: 0px 7px;
+}
+
+/* Левый край таблетки (CPU) */
+#cpu {
+    border-left: 1px solid #181825;
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 10px; 
+    padding-left: 12px;
+    color: #f38ba8; 
+}
+
+#temperature {
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+    color: #f9e2af;
+}
+
+/* Правый край таблетки (GPU) */
+#custom-gpu {
+    border-right: 1px solid #181825;
+    border-radius: 0px 10px 10px 0px;
+    margin-right: 0px; 
+    padding-right: 12px;
+    color: #a6e3a1;
+}
+
+/* Часы и погода */
+#clock {
+    background-color: rgba(13, 13, 13, 0.75);
+    border: 1px solid #181825;
+    border-radius: 10px 0px 0px 10px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-left: 10px;
+    border-right: 0px;
+    padding: 0px 10px;
+    color: #cdd6f4;
+}
+#custom-weather {
+    background-color: rgba(13, 13, 13, 0.75);
+    border: 1px solid #181825;
+    border-radius: 0px 10px 10px 0px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    border-left: 0px;
+    padding: 0px 10px;
+}
+
+/* 1. Общие стили для всех модулей */
+#network,
+#bluetooth,
+#custom-power_profile,
+#battery,
+#backlight,
+#pulseaudio,
+#pulseaudio.microphone,
+#language {
+    background-color: rgba(13, 13, 13, 0.75);
+    border-top: 1px solid #181825;
+    border-bottom: 1px solid #181825;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px 7px;
+}
+
+/* 2. Первый элемент - Сеть */
+#network {
+    border-left: 1px solid #181825;
+    border-radius: 10px 0px 0px 10px;
+    padding-left: 12px;
+}
+
+/* 3. Последний элемент справа Язык */
+#language {
+    border-right: 1px solid #181825;
+    border-radius: 0px 10px 10px 0px;
+    margin-right: 10px;
+    padding-right: 12px;
+}
+
+/* 4. Центральные элементы */
+#bluetooth,
+#custom-power_profile,
+#battery,
+#backlight,
+#pulseaudio,
+#pulseaudio.microphone {
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+}
+
+/* Трэй */
+#tray {
+    background-color: rgba(13, 13, 13, 0.75);
+    border: 1px solid #181825;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-right: 10px;
+    padding: 0px 10px;
+}
+
+/* Цвета индикаторов */
+#custom-power_profile { color: #a6e3a1; }
+#network { color: #f9e2af; }
+#bluetooth { color: #89b4fa; }
+#pulseaudio { color: #89b4fa; }
+#pulseaudio.microphone { color: #cba6f7; }
+#battery { color: #a6e3a1; }
+#language { color: #f38ba8; }
+
+/* Меню трэя и приложений */
+menu {
+    background-color: rgba(13, 13, 13, 0.95);
+    border: 1px solid #181825;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+menuitem {
+    font-family: "JetBrainsMono Nerd Font";
+    color: #cdd6f4;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+menuitem:hover {
+    background-color: rgba(69, 69, 69, 0.75);
+}
